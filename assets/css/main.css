@@ -917,7 +917,10 @@ table tfoot td {
   width: 240px;
   height: 100%;
   padding: 20px 10px;
-  background-color: #ffffff;
+  background-color: #27aae2;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 0px 10px rgba(31, 35, 46, 0.35);
+          box-shadow: 0px 0px 10px rgba(31, 35, 46, 0.35);
 }
 
 .about {
@@ -932,7 +935,14 @@ table tfoot td {
   -webkit-border-radius: 100%;
           border-radius: 100%;
   overflow: hidden;
-  background-color: #333030;
+  background-color: #27aae2;
+}
+
+.arquivei-engineering {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: oblique;
+  text-transform: lowercase;
 }
 
 .about img {
@@ -958,8 +968,9 @@ table tfoot td {
   position: relative;
   padding-bottom: 15px;
   font-size: 16px;
+  font-family: sans-serif;
   text-transform: uppercase;
-  color: #333030;
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -972,11 +983,10 @@ table tfoot td {
           transform: translateX(-50%);
   bottom: 0;
   display: block;
-  width: 7px;
-  height: 7px;
-  -webkit-border-radius: 100%;
-          border-radius: 100%;
-  background-color: #515151;
+  width: -webkit-calc(100% - 48px);
+  width: calc(100% - 48px);
+  height: 2px;
+  background-color: #ffffff;
 }
 
 .about p {
@@ -1007,11 +1017,10 @@ table tfoot td {
 
 .contact .contact-title {
   position: relative;
-  color: #333030;
+  color: #ffffff;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0 0 5px;
-  text-transform: uppercase;
   text-align: center;
 }
 
@@ -1027,7 +1036,7 @@ table tfoot td {
   position: absolute;
   top: 50%;
   left: 0;
-  background-color: #515151;
+  background-color: #ffffff;
 }
 
 .contact .contact-title::after {
@@ -1042,7 +1051,7 @@ table tfoot td {
   position: absolute;
   top: 50%;
   right: 0;
-  background-color: #515151;
+  background-color: #ffffff;
 }
 
 .contact ul {
@@ -1062,7 +1071,7 @@ table tfoot td {
 }
 
 .contact ul li a {
-  color: #515151;
+  color: #ffffff;
   display: block;
   padding: 5px;
   font-size: 18px;
@@ -1072,7 +1081,7 @@ table tfoot td {
 }
 
 .contact ul li a:hover {
-  color: #333030;
+  color: #ffffff;
   -webkit-transform: scale(1.2);
       -ms-transform: scale(1.2);
           transform: scale(1.2);
@@ -1375,9 +1384,10 @@ a.newer-posts:hover {
             justify-content: space-between;
     width: 100%;
     padding: 10px;
-    background-color: #ffffff;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(31, 35, 46, 0.15);
-            box-shadow: 0 1px 1px 0 rgba(31, 35, 46, 0.15);
+    background-color: #27aae2;
+    color: #ffffff;
+    -webkit-box-shadow: 0px 0px 10px rgba(31, 35, 46, 0.35);
+            box-shadow: 0px 0px 10px rgba(31, 35, 46, 0.35);
   }
   .sidebar footer {
     margin-bottom: 10px;
