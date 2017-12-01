@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Arquitetura Isomórfica
-date: 2017-11-30
+date: 2017-12-01
 categories: blog
 img: isomorphic-architecture.png
 tags: [Javascript, Isomorphic, Architecture]
@@ -25,7 +25,7 @@ Sobre arquitetura de frontend, o modelo moderno mais encontrado eram as SPAs e c
 
 ![isomorphic-architecture_01]({{ site.baseUrl }}/assets/img/posts/isomorphic-architecture_04.png){:class="img-fluid"}
 
-Depois de um intenso estudos sobre o assunto parecia que o único caminho trilhável era o de criar um aplicação SPA em React. Esse cenário mudou um tanto depois de bater um papo com o pessoal da [Elo7](http://engenharia.elo7.com.br/) e ver que eles usavam uma arquitetura um tanto quanto diferente. Aparentemente eles usavam o frontend como um serviço de renderização de HTML, dividiam sua aplicação em componentes e ainda rodavam esses mesmos componentes no browser do cliente. Inicialmente isso soou muito mágico mas de certa forma abriu a minha mente para propor novos modelos de arquitetura para o desmembramento do monolito.
+Depois de um intensos estudos sobre o assunto parecia que o único caminho trilhável era a criação de uma aplicação SPA em React. Esse cenário mudou um tanto depois de bater um papo com o pessoal da [Elo7](http://engenharia.elo7.com.br/) e ver que eles usavam uma arquitetura um tanto quanto diferente. Aparentemente eles usavam o frontend como um serviço de renderização de HTML, dividiam sua aplicação em componentes e ainda rodavam esses mesmos componentes no browser do cliente. Inicialmente isso soou muito mágico mas de certa forma abriu a minha mente para propor novos modelos de arquitetura para o desmembramento do monolito.
 
 # Primeira POC
 
@@ -37,7 +37,7 @@ Nesse momento eu tirei a primeira conclusão sobre o conceito que eu buscava par
 
 ## Ideias
 
-Uma vez tendo postulado a minha ideia sobre o projeot, comecei a escrever a minha primeira POC. Nesse momento eu queria usar uma ferramenta que me proporcionasse a implementação desta arquitetura sem muita dificuldade e com pouco código. Em resumo, eu procurava um framework que fizesse parte do trabalho para mim.
+Uma vez tendo postulado a minha ideia sobre o projeto comecei a escrever a minha primeira POC. Nesse momento eu queria usar uma ferramenta que me proporcionasse a implementação desta arquitetura sem muita dificuldade e com pouco código. Em resumo, eu procurava um framework que fizesse parte do trabalho para mim.
 
 Na época o universo de ferramentas que proporcionavam a implementação estratégia era bem escasso. Vamos dar um overview sobre as principais:
 
@@ -97,10 +97,14 @@ No lado do microserviço temos o tempo de resposta é de cerca de 70 milisegundo
 
 # Conclusão
 
-No que tange à performance ainda há um extenso estudo para ser feito pois carregamento inicial é um grande gargalo devido ao React e alguns plugins que deixaram a aplicação mais pesada do esperávamos. Uma possível melhoria talvez seja remover algumas dependências de propósito geral que deixaram a aplicação pesada.
+No que tange à performance ainda há um extenso estudo para ser feito pois o carregamento inicial é um grande gargalo, pois o React e alguns plugins acabam deixando a aplicação mais pesada do esperávamos. Uma possível melhoria talvez seja remover algumas dependências de propósito geral que deixaram a aplicação pesada.
 
 Além disso, a instância da máquina que roda o microserviço de frontend possui uma rede um pouco mais limitada que acaba deixando o tempo de resposta um pouco elevado. A nossa ideia é colocar o microserviço em um Kubernetes que vai usar uma instância que possua uma rede mais elástica do que a usada pelo microserviço de frontend.
 
 Quanto à **Arquitetura Isomórfica** não tenho sombra de dúvidas que foi a melhor escolha que fiz, uma vez que desenvolvemos praticamente o mesmo código para o microserviço e para o assets finais, além de melhorar a performance, proporcionar um workflow bem definido e promover uma usabilidade muito mais agradável ao usuário final.
 
 Acredito fortemente que, mesmo com os browsers modernos, a estratégia isomórfica garante uma boa experiência para o usuário e que talvez seja o destino de todos WebApps.
+
+___
+
+*Dedico esta publicação ao [Adiano Souza](https://github.com/adrianojdesouza) que tornou possível a construção desta arquitetura desde de sua idealização até os detalhes de performance em produção.*
