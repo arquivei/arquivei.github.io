@@ -9,14 +9,14 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 authors:
   arquivei:
-    name: Engenharia Arquivei
+    name: Arquivei
     image: arquivei.png
-    about: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec lorem tortor. Sed faucibus egestas felis, ut consequat quam aliquam ut.
+    about: Somos a engenharia do Arquivei. Estamos aqui para compartilhar aprendizados no nosso caminho de construir a maior plataforma de dados financeiros do brasil
     social_networks:
-      facebook: facebook
-      github: github
-      twitter: twitter
-      linkedin: linkedin
+      facebook: arquivei
+      github: arquivei
+      twitter: arquiveioficial
+      linkedin: company/4811635/
       email: engenharia@arquivei.com.br
   gustavo_san:
     name: Gustavo Santiago
@@ -31,10 +31,11 @@ authors:
     name: Rafael Mariano
     job: Software Engineer
     image: olinda.jpg
-    about: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec lorem tortor. Sed faucibus egestas felis, ut consequat quam aliquam ut.
+    about: Sou fofurizator developer. "Javascript é funcional... o resto é gambiarra"
     social_networks:
       github: toruticas
       twitter: toruticas
+      linkedin: in/toruticas
       email: rafael.silva@arquivei.com.br
 
 
