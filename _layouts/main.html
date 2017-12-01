@@ -13,13 +13,20 @@ layout: default
       <div class="cover-author-image">
         <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/assets/img/authors/{{ author.image }}" alt="{{ author.name }}"></a>
       </div>
-      <div class="author-name">{{ author.name }}</div>
+      <div class="author-name">
+        {% if author.name == "Arquivei" %}
+          {{ author.name }}
+          <p class="arquivei-engineering">@engenharia</p>
+        {% else %}
+          {{ author.name }}
+        {% endif %}
+      </div>
       <p>{{ author.about }}</p>
     </div>
   </header> <!-- End Header -->
   <footer>
     <section class="contact">
-      <h3 class="contact-title">Contact me</h3>
+      <h3 class="contact-title">@arquivei</h3>
       <ul>
         {% if author.social_networks.twitter %}
           <li>
