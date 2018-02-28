@@ -13,7 +13,7 @@ brief: OBJETIVO BREVE
 
 <p style='text-align: justify;'>
 O Ingress é um novo recurso, inserido no Kubernetes em versão beta desde o Server 1.1, e agora está oficialmente na versão 1.9
-Ele é uma maneira de abstrair um conjunto de serviços, semelhante à como um serviço abstrai um conjunto de Pods.
+Ele é uma maneira de abstrair um conjunto de serviços, semelhante a como um serviço abstrai um conjunto de Pods.
 Utilizando um conjunto de regras baseada no hostname da request, ele é capaz de rotear tráfego inbound para serviços internos do cluster.
 </p>
 
@@ -40,7 +40,7 @@ Além disso, o Ingress é a única maneira nativa de realizar Load Balancing com
 # O Ingress e os Controllers
 
 <p style='text-align: justify;'>
-Um conjunto de regras do Ingress só funciona se no cluster já estiver disponível uma distribuição do Deployment que recebe o nome de Controller do Ingress. Existem diversas distribuições, sendo possível desenvolver o seu próprio caso os disponíveis não cumpram o desejado. Dentre os disponíveis, usamos o nativo do GCE, que é uma versão  rodando por baixo o do Nginx, que é o que usamos na AWS.
+Um conjunto de regras do Ingress só funciona se no cluster já estiver disponível uma distribuição do Deployment que recebe o nome de Controller do Ingress. Existem diversas distribuições, sendo possível desenvolver o seu próprio caso os disponíveis não cumpram o desejado. Dentre os disponíveis, usamos o nativo do GCE, que é uma versão  rodando por baixo o controller do Nginx, que é o que usamos na AWS.
 </p>
 
 ## Como configurar um Controller
@@ -131,7 +131,7 @@ spec:
           - name: https
             containerPort: 443
 ```
-<p style='text-align: justify;'>O Default backend é um argumento necessário no Nginx, mas nem toda distribuição de controller usa. É um deploy a parte e um serviço que respondem apenas uma página 404 simples, que pode ser customizada.
+<p style='text-align: justify;'>O Default backend é um argumento necessário no Nginx, mas nem toda distribuição de controller usa. É um deploy à parte e um serviço que respondem apenas uma página 404 simples, que pode ser customizada.
 </p>
 
 <p style='text-align: justify;'>Depois de aplicar o deployment, o conjunto de pods fica procurando recursos ingress para gerenciar. O próximo passo é expor o Controller para a internet. Para isso, usamos um serviço do tipo LoadBalancer. No GCloud, ele é gerado automaticamente, caso estejam usando o Kubernetes como serviço fornecido e gerenciado pelo GCloud. Na AWS, precisamos criar ele explicitamente, usando um Service do Kubernetes. Segue um exemplo:
@@ -231,7 +231,7 @@ spec:
 </p>
 
 # Conclusão
-<p style='text-align: justify;'>Usar o Ingress trás facilidades assim como desafios. Desde que implementamos em nossa infra, diminuimos o numero de Load Balancers que precisamos usar para manter todos os ambientes de 32 para 10 no cluster gerenciado pelo GCloud, e de 14 para 2 no cluster AWS de Prod e de 11 para 1 no de Dev.</p>
+<p style='text-align: justify;'>Usar o Ingress traz facilidades assim como desafios. Desde que implementamos em nossa infra, diminuimos o numero de Load Balancers que precisamos usar para manter todos os ambientes de 32 para 10 no cluster gerenciado pelo GCloud, e de 14 para 2 no cluster AWS de Prod e de 11 para 1 no de Dev.</p>
 <p style='text-align: justify;'>
 No total tivemos então uma redução de 57 Load Balancers para apenas 13, considerando clusters de Dev e Prod entre AWS e GCloud. Lembrando que não chegamos a usar todos esses Load Balancers na infra antiga, e sim que para replicar hoje a nossa infra da mesma maneira que usávamos a 2 mêses atrás teríamos estes numeros, mas realizamos a mudança antes que escalasse demais.
 </p>
