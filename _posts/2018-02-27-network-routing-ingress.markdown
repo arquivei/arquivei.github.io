@@ -40,7 +40,7 @@ Além disso, o Ingress é a única maneira nativa de realizar Load Balancing com
 # O Ingress e os Controllers
 
 <p style='text-align: justify;'>
-Um conjunto de regras do Ingress só funciona se no cluster já estiver disponível uma distribuição do Deployment que recebe o nome de Controller do Ingress. Existem diversas distribuições, sendo possível desenvolver o seu próprio caso os disponíveis não cumpram o desejado. Dentre os disponíveis, usamos o nativo do GCE, que é uma versão  rodando por baixo o do Nginx, que é o que usamos na AWS.
+Um conjunto de regras do Ingress só funciona se no cluster já estiver disponível uma distribuição do Deployment que recebe o nome de Controller do Ingress. Existem diversas distribuições, sendo possível desenvolver o seu próprio caso os disponíveis não cumpram o desejado. Dentre os disponíveis, usamos o nativo do GCE, que é uma versão  rodando por baixo o controller do Nginx, que é o que usamos na AWS.
 </p>
 
 ## Como configurar um Controller
