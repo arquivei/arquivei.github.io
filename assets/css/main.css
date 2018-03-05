@@ -1456,3 +1456,16 @@ a.newer-posts:hover {
     font-size: 21px;
   }
 }
+
+/* Custom CSS
+   ========================================================================== */
+
+/* Prevents code from being bigger than the viewport */
+code {  
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+}

@@ -6,7 +6,7 @@ categories: blog
 img: network-routing-ingress.png
 tags: [Kubernetes, Networking, Routing]
 author: luccas
-brief: OBJETIVO BREVE
+brief: O meu principal objetivo com o Ingress foi diminuir o numero de load balancers, com isso diminuindo nossa superficie de ataque pela internet e reduzindo gastos com esse tipo de recurso.
 ---
 
 # O que é:
