@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Automation - A origem
+title: Passo a passo da automação com Python e Selenium
 date: 2018-03-07
 categories: blog
 img: automation-start.jpg
