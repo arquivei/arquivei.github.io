@@ -107,4 +107,4 @@ Acredito fortemente que, mesmo com os browsers modernos, a estratégia isomórfi
 
 ___
 
-*Dedico esta publicação ao [Adiano Souza](https://github.com/adrianojdesouza) que tornou possível a construção desta arquitetura desde de sua idealização até os detalhes de performance em produção.*
+*Dedico esta publicação ao [Adriano Souza](https://github.com/adrianojdesouza) que tornou possível a construção desta arquitetura desde de sua idealização até os detalhes de performance em produção.*

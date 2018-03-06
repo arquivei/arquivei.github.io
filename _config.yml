@@ -41,10 +41,19 @@ authors:
     image: olinda.jpg
     about: Sou fofurizator developer. "Javascript é funcional... o resto é gambiarra"
     social_networks:
-      github: toruticas
+      github: leluke
       twitter: toruticas
       linkedin: in/toruticas
       email: rafael.silva@arquivei.com.br
+  luccas:
+    name: Luccas Rodrigues
+    job: Software Reliability Engineer 
+    image: luccas.png
+    about: Menino dos deploy. <br>"Fiz deploy, saí correndo..."
+    social_networks:
+      github: leluke
+      linkedin: in/luccas-rodrigues-87497011b
+      email: luccas.rodrigues@arquivei.com.br
 
 
 # Disqus
