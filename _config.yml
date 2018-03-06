@@ -25,6 +25,16 @@ authors:
       github: santiagogustavo
       linkedin: in/santiago-gustavo
       email: gustavo.santiago@arquivei.com.br
+  leticia:
+    name: Letícia Rostirola
+    job: Quality Assurance
+    image: leticia.jpg
+    about: "QA walks into a bar. Orders a beer. Orders 999999999 beers. Orders a lizard."
+    social_networks:
+      github: ladylovelace
+      twitter: lrostirola
+      linkedin: in/lrostirola
+      email: leticia.rostirola@arquivei.com.br
   olinda:
     name: Rafael Mariano
     job: Software Engineer
