@@ -29,7 +29,9 @@ A nossa necessidade era de tecnologias que fossem simples, confiáveis, de fáci
 **Lettuce**     - por ser um framework para BDD (Behavior Driven Development) que permite executar testes automáticos em Python de forma simples.
 
 
-##### Obs: Lettuce é compatível apenas com Python2.7-. Recomendamos substituir o Lettuce pelo Behave e utilizar Python3+ em um novo projeto (a diferença é sutil e pode ser encontrada .
+##### Obs: Recomendo substituir o Lettuce pelo [Behave](https://github.com/behave/behave) (a diferença entre eles é sútil) e usar Python3+. Lettuce infelizmente é apenas compatível com Python2 (que será descontinuado em 2020).
+
+![automation-start-behave]({{site.baseurl}}/assets/img/posts/automation-start-behave.png){:class="img-fluid"}
 
 # O que automatizar ?
 
@@ -177,7 +179,7 @@ Scenario: [23] Consult NFe - A1
 ## Passo 3: Escrever as funções para automação
 
 As funções responsáveis por executar os casos de teste ficam organizadas dentro do arquivo *steps.py*.
-Com conhecimento básico em [Python](https://python.org.br/introducao/) e com o auxílio da documentação do [Selenium Pyton](http://selenium-python.readthedocs.io/getting-started.html) você é capaz de criar seu código sem grandes problemas.
+Com conhecimento básico em [Python](https://python.org.br/introducao/) e com o auxílio da documentação do [Selenium Python](http://selenium-python.readthedocs.io/getting-started.html) você é capaz de criar seu código sem grandes problemas.
 Outro grande auxiliar na construção das suas funções é o [Inspect do Chrome](https://developers.google.com/web/tools/chrome-devtools/inspect-styles/?hl=pt-br) que te mostra de maneira fácil os elemento do *DOM* de sua aplicação.
 
 ![automation-start-inspect]({{site.baseurl}}/assets/img/posts/automation-start-inspect.jpg){:class="img-fluid"}
