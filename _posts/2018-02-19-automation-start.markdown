@@ -274,3 +274,14 @@ Durante a execução da sua *Feature* o Lettuce vai te informando sobre falhas e
 Uma das vantagens de usar browser *headless* é que você pode iniciar os testes e realizar outras atividades em paralelo, sem que isto afete a automação. Mas o maior ganho do *headless* é permitir que a automação seja executada em qualquer servidor sem Display, permitindo o uso de ferramentas de integração contínua.
 
 Existem também estratégias de *Debug* para browsers *headless* como o uso da biblioteca [pyvirtualdisplay](http://pyvirtualdisplay.readthedocs.io/en/latest/) que te permite tirar *screenshots* do momento antes/após a falha do teste.
+
+
+## Conclusão
+
+A automação com *Python* e *Selenium* se mostrou eficiente a partir do momento que conseguimos focar em seu desenvolvimento. A curva de aprendizado é rápida, então é possível em pouco tempo ter cenários sendo executados de forma automática. Porém é preciso separar horas do seu dia ou se dedicar integralmente a isto até que ao menos o *Smoke Test* se torne maduro.
+
+Saiba que manutenções serão necessárias no decorrer da evolução da sua aplicação, ou devido a causas diversas. Então não andiantará colocar a automação em um *Jenkins* e esquecê-la, é preciso ter sempre um responsável por manter o projeto atualizado e funcionando.
+
+Mantenha um contato próximo com a equipe de *Frontend* . Pouco tempo depois de finalizar o *Smoke Test* e com boa parte da regressão da tela de listagem de notas (a mais utilizada por nossos clientes) feita, esta tela foi removida do monolito e separada entre os times  de *Backend* e *Frontend* . Com isto, os *ids* dos botões e campos acabaram sendo alterados, e a automação começou a falhar.
+
+Conforme a regressão automatizada foi crescendo, a manutenção nas funções concentradas em um único arquivo (steps.py) começou a ficar dolorosa. Desta forma, começamos a estudar sobre estratégias de organização de testes automatizados e concluímos que o uso do [PageObjects](http://selenium-python.readthedocs.io/page-objects.html) seria a melhor estratéria para nós. Mas aí já é assunto para um próximo Post ;)
