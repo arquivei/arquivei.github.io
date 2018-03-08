@@ -7,12 +7,9 @@
     <meta content="{{ site.title }}" property="og:site_name">
   {% if page.title %}
     <meta content="{{ page.title }}" property="og:title">
-  {% else %}
-    <meta content="{{ site.title }}" property="og:title">
-  {% endif %}
-  {% if page.title %}
     <meta content="article" property="og:type">
   {% else %}
+    <meta content="{{ site.title }}" property="og:title">
     <meta content="website" property="og:type">
   {% endif %}
   {% if page.description %}
@@ -21,16 +18,16 @@
     <meta content="{{ site.description }}" property="og:description">
   {% endif %}
   {% if page.url %}
-    <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+    <meta content="{{ site.baseUrl }}{{ page.url }}" property="og:url">
   {% endif %}
   {% if page.date %}
     <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-    <meta content="{{ site.url }}/about/" property="article:author">
+    <meta content="{{ site.baseUrl }}/about/" property="article:author">
   {% endif %}
   {% if page.img %}
-    <meta content="{{ site.url }}{{ site.baseurl }}/assets/img/{{ page.img }}" property="og:image">
+    <meta content="{{ site.baseUrl }}/assets/img/{{ page.img }}" property="og:image">
   {% else %}
-    <meta content="/img/{{ site.author-img }}" property="og:image">
+    <meta content="{{ site.baseUrl }}/assets/img/{{ site.author-img }}" property="og:image">
   {% endif %}
   {% if page.categories %}
     {% for category in page.categories limit:1 %}
@@ -56,7 +53,7 @@
     <meta name="twitter:title" content="{{ site.title }}">
   {% endif %}
   {% if page.url %}
-    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="twitter:url" content="{{ site.baseUrl }}{{ page.url }}">
   {% endif %}
   {% if page.description %}
     <meta name="twitter:description" content="{{ page.description }}">
@@ -64,15 +61,14 @@
     <meta name="twitter:description" content="{{ site.description }}">
   {% endif %}
   {% if page.img %}
-    <meta name="twitter:image:src" content="{{ site.url }}{{ site.baseurl }}/assets/img/{{ page.img }}">
+    <meta name="twitter:image:src" content="{{ site.baseUrl }}/assets/img/{{ page.img }}">
   {% else %}
-    <meta name="twitter:image:src" content="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author-img }}">
+    <meta name="twitter:image:src" content="{{ site.baseUrl }}/assets/img/{{ site.author-img }}">
   {% endif %}
 
 	<meta name="description" content="{{ page.description }}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta property="og:image" content="">
 	<link rel="shortcut icon" href="{{ "/assets/img/favicon.png" | prepend: site.baseurl }}" type="image/x-icon">
 	<link rel="apple-touch-icon" href="{{ "/assets/img/apple-touch-icon.png" | prepend: site.baseurl }}">
 	<!-- Chrome, Firefox OS and Opera -->
