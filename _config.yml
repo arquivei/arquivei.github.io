@@ -3,7 +3,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Somos a engenharia do Arquivei. Estamos aqui para compartilhar aprendizados no nosso caminho de construir a maior plataforma de dados financeiros do brasil
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://engenharia.arquivei.com.br" # the base hostname & protocol for your site, e.g. http://example.com
 
 authors:
   arquivei:
@@ -47,7 +47,7 @@ authors:
       email: rafael.silva@arquivei.com.br
   luccas:
     name: Luccas Rodrigues
-    job: Software Reliability Engineer 
+    job: Software Reliability Engineer
     image: luccas.png
     about: Menino dos deploy. <br>"Fiz deploy, saí correndo..."
     social_networks:
