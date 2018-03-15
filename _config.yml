@@ -54,7 +54,16 @@ authors:
       github: leluke
       linkedin: in/luccas-rodrigues-87497011b
       email: luccas.rodrigues@arquivei.com.br
-
+  flipper:
+    name: Vinicius Araujo
+    job: Frontend Intern
+    image: flipper.png
+    about: Desenvolvedor aquático. <br>"Já ouviu falar em criptomoedas?"
+    social_networks:
+      facebook: vini.marchesin
+      github: vmarchesin
+      linkedin: in/vinicius-araujo-238a9b96/
+      email: vinicius.araujo@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier
