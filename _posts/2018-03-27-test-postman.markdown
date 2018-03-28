@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testando API Rest com Postman
-date: 2018-03-29
+date: 2018-03-27
 categories: blog
 img: postman-start.png
 tags: [Postman, Testing API, QA, Test]
@@ -9,10 +9,6 @@ author: leonardo_camargo
 brief: Como testar uma API Rest utilizando Postman + Newman
 ---
 <style>
-  article p {
-    text-align: justify;
-    text-indent: 25px;
-  }
 
   article .center {
     margin-top: 30px;
@@ -20,9 +16,6 @@ brief: Como testar uma API Rest utilizando Postman + Newman
     text-align: center;
 }
 
-  .mb-1 {
-    margin-bottom: 10px;
-  }
 </style>
 
 Devido a evolução da área de desenvolvimento de software, aplicações desenvolvidas com base em serviços estão se tornando muito mais frequentes, deixando de dar o foco em aplicações com arquitetura monolitica onde tínhamos todas as funcionalidades do sistema unidas em único processo e passando a termos serviços a parte que se comunicam entre eles para chegar ao mesmo resultado com melhor desempenho, maior facilidade para manutenção e também a base de código menos extensa, facilitando a leitura do código.
@@ -42,7 +35,7 @@ Postman é uma aplicação que auxilia no desenvolvimento de WebServices, princi
 
 
 <div class="center">
- <img src="/assets/img/posts/postman-info.png" class="img-fluid mb-1"/><br/>
+ <img src="/assets/img/posts/postman-info.png"/><br/>
 </div>
 
 ### Vantagens Postman:
