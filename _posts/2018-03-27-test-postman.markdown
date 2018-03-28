@@ -77,7 +77,7 @@ Após isso, é só clicarmos em **Send** e teremos a resposta da nossa API com o
         "id": 4011658
     }
 ```
-Com isso conseguimos fazer nosso primeiro teste. Clique na aba Tests". O Postman nos dá alguns testes default para conseguirmos validarmos o nosso retorno. Vamos validar se o nosso retorno é uma resposta 200. Basta clicarmos no Snippet **Status Code: Code is 200** e clicarmos em **Send** novamente. Se clicarmos em "Tests Results" iremos ver o resultado do nosso teste que passou com sucesso =)
+Com isso conseguimos fazer nosso primeiro teste. Clique na aba Tests". O Postman nos dá alguns testes default para conseguirmos validar o nosso retorno. Vamos validar se o nosso retorno é uma resposta 200. Basta clicar no Snippet **Status Code: Code is 200** e clicar em **Send**. Para validar os resultados do teste, podemos ir até "Tests Results" e validar se a resposta da assertion foi atendida.
 
 ![postman-result-200]({{site.baseurl}}/assets/img/posts/postman-200.png)
 
@@ -102,7 +102,7 @@ O Newman nada mais é que uma versão minificada do Postman para ser rodado em l
 Para rodarmos nossos testes em linha de comando, precisamos exportar nossos testes e também a nossa variável global. Para exportar os nossos testes só precisamos salvar nossos testes, precisamos ir no Postman e clicar em **Save**, informando um nome para nossa Collection que seria todos os nossos testes. Após isso é só clicarmos em Export e salvar na pasta desejada.
 
 Para exportar a nossa variável de ambiente acesse o Manage Environments e clique em "Download as JSON".
-Para rodar nosss testes, precisamos rodar o seguinte comando:
+Para rodar nossos testes, precisamos rodar o seguinte comando:
 
 ```newman run nome_do_arquivo_dos_tests.json -G nome_arquivo_variaveis.json```
 
@@ -114,5 +114,5 @@ Podemos também, exportar nossos testes para html, cli, json ou junit adicionand
 
 # Conclusão
 
-Postman é uma ferramenta de fácil utilização e quando bem utilizada consegue ajudar não só nos testes mas também no desenvolvimento da aplicação. Muitas pessoas conhecem o Postman apenas para validar a chamada, ver a resposta mas conseguimos ver que podemos ir além, podemos testar essas chamadas fazendo várias asserções em javascript e gerar métricas. Além disso, conseguimos em um ambiente de CI termos um teste para contribuir no build.
+Postman é uma ferramenta de fácil utilização e quando bem utilizada consegue ajudar não só nos testes mas também no desenvolvimento da aplicação.Muitas pessoas conhecem o Postman apenas para validar a chamada, ver a resposta. Mas conseguimos ir além: podemos testar nossas chamadas através de várias asserções em javascript e gerar métricas. Além disso, conseguimos em um ambiente de CI termos um teste para contribuir no build.
 Uma ferramenta completa que consegue contribuir para todas as áreas de desenvolvimento: QA, Frontend, Backend e Devops.
