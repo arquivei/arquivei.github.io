@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testando API Rest com Postman
-date: 2018-03-27
+date: 2018-03-29
 categories: blog
 img: postman-start.png
 tags: [Postman, Testing API, QA, Test]
