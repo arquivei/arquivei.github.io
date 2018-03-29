@@ -64,7 +64,17 @@ authors:
       github: vmarchesin
       linkedin: in/vinicius-araujo-238a9b96/
       email: vinicius.araujo@arquivei.com.br
-
+  leonardo_camargo:
+    name: Leonardo Camargo
+    job: Quality Assurance
+    image: leonardo_camargo.jpg
+    about: automaixo e otras cositas más. <br> "Numa escala de 0 a 10, 10".
+    social_networks:
+      facebook: leonardo.camargo.908
+      github: leonardocamargo
+      linkedin: in/leonardo-camargo-298286a0
+      twitter: leocamargo1_
+      email: lcamargo36@gmail.com
 # Disqus
 discus-identifier: arquivei # add your discus identifier
 
