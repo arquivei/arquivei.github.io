@@ -75,6 +75,17 @@ authors:
       linkedin: in/leonardo-camargo-298286a0
       twitter: leocamargo1_
       email: lcamargo36@gmail.com
+  edison_jr:
+    name: Edison Silva Jr
+    job: Software Engineer
+    image: edison_jr
+    about: Lorem ipsum
+    social_networks:
+      github: esilvajr
+      linkedin: in/esilvajr/
+      twitter: efrancsi
+      email: me@email.com
+
 # Disqus
 discus-identifier: arquivei # add your discus identifier
 
