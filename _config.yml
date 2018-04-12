@@ -75,6 +75,17 @@ authors:
       linkedin: in/leonardo-camargo-298286a0
       twitter: leocamargo1_
       email: lcamargo36@gmail.com
+  edison_jr:
+    name: Edison Silva Jr
+    job: Software Engineer
+    image: edison_jr.jpeg
+    about: "Agora vai sobrar então, só um bugzinho pra cada sistema. Só um bugzinho. ;)"
+    social_networks:
+      github: esilvajr
+      twitter: efrancsi
+      linkedin: in/esilvajr
+      email: edison.junior@arquivei.com.br
+
 # Disqus
 discus-identifier: arquivei # add your discus identifier
 
