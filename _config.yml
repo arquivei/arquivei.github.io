@@ -85,6 +85,16 @@ authors:
       twitter: efrancsi
       linkedin: in/esilvajr
       email: edison.junior@arquivei.com.br
+  lemuel:
+    name: Lemuel Roberto Bonifácio
+    job: Software Engineer
+    image: lemuel.jpg
+    about: "goiano forrozeiro escrevendo código com sentimento"
+    social_networks:
+      github: lemuelroberto
+      twitter: lemuelroberto
+      linkedin: in/lemuelroberto
+      email: lemuel.bonifacio@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier
