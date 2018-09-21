@@ -85,6 +85,15 @@ authors:
       twitter: efrancsi
       linkedin: in/esilvajr
       email: edison.junior@arquivei.com.br
+  andre_missaglia:
+    name: André Badawi Missaglia
+    job: Data Engineer
+    image: missaglia.jpeg
+    about: "Data is like people – interrogate it hard enough and it will tell you whatever you want to hear."
+    social_networks:
+      github: andremissaglia
+      linkedin: in/andremissaglia
+      email: andre.missaglia@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier
