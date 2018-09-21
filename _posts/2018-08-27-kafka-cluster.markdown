@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Subindo um cluster de kafka
-date: 2018-09-03
+date: 2018-09-21
 categories: blog
 img: kafka/kafka.png
 tags: [Kafka, Zookeeper, Cluster, Fault Tolerance, Durability]
