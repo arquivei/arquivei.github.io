@@ -94,6 +94,15 @@ authors:
       github: andremissaglia
       linkedin: in/andremissaglia
       email: andre.missaglia@arquivei.com.br
+  barbie:
+    name: Leonardo Miguel
+    job: Data Engineer
+    image: barbie.jpg
+    about: "Usei usei eventos escrever para descrição es.sa"
+    social_networks:
+      github: leonardoam
+      linkedin: in/leonardoalvesmiguel
+      email: leonardo.miguel@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier
