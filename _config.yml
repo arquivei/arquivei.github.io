@@ -41,7 +41,7 @@ authors:
     image: olinda.jpg
     about: Sou fofurizator developer. "Javascript é funcional... o resto é gambiarra"
     social_networks:
-      github: leluke
+      github: toruticas
       twitter: toruticas
       linkedin: in/toruticas
       email: rafael.silva@arquivei.com.br
@@ -103,6 +103,17 @@ authors:
       github: leonardoam
       linkedin: in/leonardoalvesmiguel
       email: leonardo.miguel@arquivei.com.br
+  victor_nunes:
+    name: Victor Marcelino Nunes
+    job: Software Engineer
+    image: victor_nunes.jpg
+    about: I would tell you a UDP joke <br> But you might not get it
+    social_networks:
+      facebook: vnunes9
+      github: victormn
+      twitter: victormn19
+      linkedin: in/vmnunes
+      email: victor.nunes@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier

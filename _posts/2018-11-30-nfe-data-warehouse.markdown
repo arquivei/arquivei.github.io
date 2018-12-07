@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Libertando dados massivos presos em uma aplicação
+title: Libertando dados massivos presos em uma aplicação web
 date: 2018-11-30
 brief: Como reunir dados analíticos distribuídos em 300 milhões de arquivos e um cluster de 24 máquinas em outra nuvem sem causar problemas em produção?
 img: nfe-data-warehouse/dataflow.png
