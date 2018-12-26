@@ -114,6 +114,14 @@ authors:
       twitter: victormn19
       linkedin: in/vmnunes
       email: victor.nunes@arquivei.com.br
+  eduardo_soldera:
+    name: Eduardo Soldera Garcia
+    job: Data Engineer
+    image: eduardo_soldera.png
+    about: Re<strike>z</strike>solvedor de Problemas
+    social_networks:
+      linkedin: in/eduardosoldera
+      email: eduardo.soldera@arquivei.com.br
 
 # Disqus
 discus-identifier: arquivei # add your discus identifier
