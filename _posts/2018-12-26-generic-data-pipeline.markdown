@@ -202,7 +202,7 @@ No modelo de programação do Apache Beam, deve-se implementar a classe ```DoFn`
 De maneira simplista, uma função idempotente ```processElement``` realiza uma leitura (```context.element()```) e uma escrita (```context.output```) do dado processado.
 Nesse caso o tipo de dado utilizado é o ```TableRow```, que representa uma linha de dados no BigQuery.
 
-##Nova implementação
+## Nova implementação
 
 O código será apresentado na mesma sequência em que a lógica do pipeline foi apresentada (Tópico "Pipeline genérico")
 
