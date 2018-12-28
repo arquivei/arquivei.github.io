@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Criando e evoluindo tabelas no BigQuery de maneira genérica a partir de UM pipeline de dados em Streaming
+title: Processando eventos genéricos em streaming usando BigQuery e Dataflow
 date: 2018-12-07
 categories: blog
 img: genericpipeline/main-picture.jpg
@@ -16,12 +16,12 @@ brief: "Construindo um pipeline de dados que cria e evolui tabelas automaticamen
 </style>
 
 Pipelines de dados em streaming são muito utilizados para consumir eventos de uma fila e disponibilizá-los em um Data Warehouse para consulta. Nesse artigo, apresentamos uma solução de pipeline que lê de um stream de eventos e realiza uma inserção dinâmica em tabelas do BigQuery a partir dos dados contidos em cada evento, sem nos preocuparmos em definirmos o schema de cada evento no código do pipeline. 
-utilizamos um wrapper do Spotify (Scio) em Scala para o Apache Beam, um modelo de programação voltado para processamento de dados em streaming e batch, que executa no Google Dataflow e em outros runners de processamento de dados, como o Apache Spark e Flink.
+Utilizamos uma API do Spotify (Scio) em Scala, que encapsula as bibliotecas do Apache Beam, uma implementação do modelo de programação Dataflow, criado pelo Google, voltado para processamento de dados em streaming e batch, que executa no Google Dataflow e em outros runners de processamento de dados, como o Apache Spark e Flink.
 
 
 # Contexto
 
-Na Arquivei, utilizamos a arquitetura de eventos para análises sobre os dados que chegam da nossa aplicação, integrações com outras plataformas e entrega de painéis de saúde de negócio. 
+Na Arquivei, utilizamos a arquitetura baseada em eventos para análises sobre os dados que chegam da nossa aplicação, integrações com outras plataformas e entrega de painéis de saúde de negócio. 
 Possuímos centenas de eventos por segundo chegando via streaming. O protocolo utilizado é o JSON e temos em torno de uma centena de Schemas diferentes, com esse número crescendo a cada dia. <br>
 O fato de possuirmos centenas de eventos diferentes trouxe um problema de produtividade e escalabilidade para o time de dados, porque para cada novo tipo de evento ou campo, existia a necessidade de fazer uma alteração no código e novo deploy nos pipelines de dados existentes.<br>
 Mesmo com a existência de diversas soluções automatizadas de testes e deploy, a necessidade de uma alteração em código envolve a escrita e execução de testes, revisão de código e alterações no versionamento, além de uma migração de Schema das tabelas de destino dos eventos.<br>
@@ -30,7 +30,7 @@ Resumo: dor de cabeça.
 
 ## Nossa stack
 
-Como Data Warehouse, utilizamos o [BigQuery](https://cloud.google.com/bigquery/), altamente escalável, barato, integrável com uma série de ferramentas de Business Intelligence e completamente gerenciado pelo Google. Claro que tudo depende do caso de uso, porém já vimos empresas perdendo <b>muito</b> tempo partindo para soluções Hadoop para executar queries em dados estruturados. 
+Como Data Warehouse, utilizamos o [BigQuery](https://cloud.google.com/bigquery/), altamente escalável, barato, integrável com uma série de ferramentas de Business Intelligence e completamente gerenciado pelo Google Cloud Platform. Claro que tudo depende do caso de uso, porém já vimos empresas perdendo <b>muito</b> tempo partindo para soluções Hadoop para executar queries em dados estruturados. 
 
 Para o desenvolvimento de Pipelines, utilizamos o [Apache Beam](https://beam.apache.org), projeto open source originado de códigos fechados do Google, propõe um modelo de programação voltado para processamento de dados em streaming e batch de forma unificada. O Beam disponibiliza bibliotecas em Java, Python e Go. O Spotify mantém o [Scio](https://github.com/spotify/scio), um projeto open source que encapsula as bibliotecas Java do Beam, oferecendo uma interface na linguagem [Scala](https://www.scala-lang.org/), que é interoperável com Java e combina orientação a objetos com programação funcional.
 
@@ -60,7 +60,7 @@ Paralelamente à questão abordada, o time de Engenharia de Dados havia recentem
 ```
 Nesse envelope, existe uma informação de versão ```SchemaVersion```, que iria ser incrementada quando o envelope como um todo evoluísse. Analogamente, o ```DataVersion``` corresponde ao versionamento de evolução dos dados no campo ```Data```, que carregará os dados específicos de cada evento. 
 
-Os campos ```Source``` e ```Type``` representam respectivamente o sistema de origem e o tipo do evento. O ```ID``` é um identificador único ordenável gerado na produção do evento.
+Os campos ```Source``` e ```Type``` representam respectivamente o sistema de origem e o tipo do evento. O ```ID``` é o ULID (identificador único ordenável) gerado na produção do evento.
 O campo ```CreatedAt``` é um campo que representa o momento de criação de evento e deve seguir o formato RFC3339.
 
 A definição de um envelope padrão já facilitou a tradução dos eventos para tabelas do BigQuery, pois apenas os campos dentro do ```Data``` podem ter um parsing personalizado.
@@ -70,7 +70,49 @@ A definição de um envelope padrão já facilitou a tradução dos eventos para
 
 Após a primeira padronização do envelope de eventos, tentamos a seguinte abordagem:
 
-- Eventos que faziam tracking de usabilidade da plataforma ganharam um campo ```IsTracking = true``` e todos cairiam na mesma tabela, com o campo ```Data``` todo convertido em String
+- Eventos que faziam tracking de usabilidade da plataforma ganharam um campo ```IsTracking = true``` e todos cairiam na mesma tabela, com o campo ```Data``` todo convertido em String. Abaixo o Schema dessa tabela:
+
+```json
+[
+  {
+    "name": "ID",
+    "type": "STRING",
+    "mode": "NULLABLE"
+
+  },
+  {
+    "name": "Source",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "Type",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "SchemaVersion",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "DataVersion",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "Data",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "CreatedAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  }
+]
+```
+
 - Demais eventos tinham como destino uma tabela específica para cada evento, não necessariamente no mesmo dataset
 
 Essa abordagem acabou gerando dois problemas:
@@ -87,7 +129,7 @@ Pesquisamos várias alternativas de tecnologias e abordagens para atacar essa qu
 
 # O "pipeline genérico"
 
-Carinhosamente apelidado pelo time de Engenharia de Dados de "Pipeline genérico", dcomeçamos a desenvolvemos um pipeline para substituir quilos de código por apenas apenas alguns métodos mágicos que iriam abstrair o conceito de parsear eventos e inseri-los no BigQuery.
+Carinhosamente apelidado pelo time de Engenharia de Dados de "Pipeline genérico", começamos a desenvolver um pipeline para substituir quilos de código por apenas alguns métodos mágicos que iriam abstrair o conceito de parsear eventos e inseri-los no BigQuery.
 
 A ideia geral do pipeline segue esse fluxo apresentado no artigo do Google:
 
@@ -109,14 +151,14 @@ Com uma coleção de dados representando as falhas, comparamos o Schema da tabel
 
 ## Condições
 
-Precisamos fazer alguns assumptions para o funcionamento com perfeição do nosso "Pipeline genérico". Estamos utilizando o JSON como protocolo de transmissão de dados. Esses assumptions poderiam ser garantidos com a mudança para um formato como o [AVRO](https://avro.apache.org/), que dispararia uma exceção no produtor de eventos caso ele não esteja produzindo no padrão esperado. Isso pode ser alcançado com a implantação do [Schema Registry](https://github.com/confluentinc/schema-registry) para o Apache Kafka e esse é o próximo passo que queremos dar para colaborar nos esforços de escalabilidade e padronização.
+Precisamos traçar algumas condições para o funcionamento com perfeição do nosso "Pipeline genérico". Estamos utilizando o JSON como protocolo de transmissão de dados. Essas condições poderiam ser garantidos com a mudança para um formato como o [AVRO](https://avro.apache.org/), que dispararia uma exceção no produtor de eventos caso ele não esteja produzindo no padrão esperado. Isso pode ser alcançado com a implantação do [Schema Registry](https://github.com/confluentinc/schema-registry) para o Apache Kafka e esse é o próximo passo que queremos dar para colaborar nos esforços de escalabilidade e padronização.
 
-Atualmente os assumptions são:
+Atualmente as condições são:
 - O evento é um JSON válido
 - O evento segue o nosso envelope padrão (como apresentado no início do post)
 - Um evento nunca terá um tipo de dado alterado em algum campo existente (exemplo de problema: ```{"AccountId": 1}``` -> ```{"AccountId": '1'}```)
 
-Caso um dos assumptions seja quebrado (como já foi), os eventos serão inseridos na tabela de fallback.
+Caso uma das condições seja quebrada (como já foi), os eventos serão inseridos na tabela de fallback.
 
 # Resultados
 
@@ -214,7 +256,7 @@ Esse método e vários outros, utilizarão do [Pattern Matching de Scala](https:
 
 ```scala
   def parseMessage(msg: String): JValue = {
-    implicit val formats = org.json4s.DefaultFormats
+    val formats = org.json4s.DefaultFormats
     Try(parse(msg)) match {
       case Success(obj) => obj
       case Failure(_) =>
@@ -225,14 +267,14 @@ Esse método e vários outros, utilizarão do [Pattern Matching de Scala](https:
 ```
 Nesse momento, um erro é adicionado no LOG caso a string não siga o padrão JSON. Como utilizamos o Google Dataflow, criamos um aviso via [Stackdriver](https://cloud.google.com/stackdriver/), que nos envia um e-mail caso um erro chegue ao LOG.
 
-Esse é o momento de realizar as adaptações citadas (padronização dos casings dos campos do JSON, formatos de data e fuso horário, conversões e inserção de dados enriquecidos, como hora de processamento). Como essa etapa é muito particulara para cada caso, não entraremos em detalhes.
+Esse é o momento de realizar as adaptações citadas (padronização dos casings dos campos do JSON, formatos de data e fuso horário, conversões e inserção de dados enriquecidos, como hora de processamento). Como essa etapa é muito particular para cada caso, não entraremos em detalhes.
 
-Na posse do JValue, o mesmo deve ser convertido para TableRow, que é a representação do Apache Beam para uma linha numa tabela do BigQuery, então nós precisamos de um método para realizar a conversão entre ```JValue``` (o objeto JSON para o JSON4s) e ```TableRow```.
+Na posse do JValue, o mesmo deve ser convertido para ```TableRow```, que é o tipo da lib do BigQuery que representa uma linha numa tabela do BigQuery, então nós precisamos de um método para realizar a conversão entre ```JValue``` (o objeto JSON para o JSON4s) e ```TableRow```.
 
 ```scala
 object JsonToTablerow {
   def apply(input: JObject): TableRow = {
-    implicit val format = org.json4s.DefaultFormats
+    val format = org.json4s.DefaultFormats
     val sanitizedInput = input.noNulls remove { //garante ausência de elementos nulos
       case JArray(listOf) => listOf match {
         case Nil => true
@@ -457,7 +499,7 @@ A política de Retry garante que serão feitas várias tentativas de inserção 
 Essas falhas ocorrem em duas situações:
 
 - O JSON digievoluiu e ganhou mais campos \o\ /o/ \o/
-- O JSON falhou na inserção por não respeitar nosso assumption (exemplo: uma string tentou ser inserida num campo numérico) :( :(
+- O JSON falhou na inserção por não respeitar nossas condições (exemplo: uma string tentou ser inserida num campo numérico) :( :(
 
 Para as duas situações temos solução.
 
@@ -468,14 +510,14 @@ Agora, forçamos o não paralelismo utilizando um recurso do Apache Beam que é 
 - Comparamos os dois Schemas e fazemos um merge dos dois, para respeitar o nosso JSON digievoluído e também suas versões mais antigas
 - Realizamos uma mutação do Schema da tabela de Destino
 
-A mutação da tabela de destino pode falhar. Isso indica que nossos assumptions não foram respeitados, pois um campo teria seu tipo alterado por um update de Schema (o que o BigQuery não permite).
+A mutação da tabela de destino pode falhar. Isso indica que nossas condições não foram respeitadas, pois um campo teria seu tipo alterado por um update de Schema (o que o BigQuery não permite).
 
 Se a mutação de tabela falhar, entra a nossa maravilhosa "fallback_table". Nós pegamos o evento que falhou e colocamos ele em um envelope menos sexy, porém utilizável para os casos de falha:
 
 ```scala
   def parseToFallback(inputRow: TableRow): TableRow = {
 
-    implicit val formats = org.json4s.DefaultFormats
+    val formats = org.json4s.DefaultFormats
     inputRow.remove("ProcessingTime")
 
     val jsonStr = new Gson().toJson(inputRow)
