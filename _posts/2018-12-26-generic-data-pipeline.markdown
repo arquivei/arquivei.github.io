@@ -256,7 +256,6 @@ Esse método e vários outros, utilizarão do [Pattern Matching de Scala](https:
 
 ```scala
   def parseMessage(msg: String): JValue = {
-    val formats = org.json4s.DefaultFormats
     Try(parse(msg)) match {
       case Success(obj) => obj
       case Failure(_) =>
@@ -274,7 +273,6 @@ Na posse do JValue, o mesmo deve ser convertido para ```TableRow```, que é o ti
 ```scala
 object JsonToTablerow {
   def apply(input: JObject): TableRow = {
-    val format = org.json4s.DefaultFormats
     val sanitizedInput = input.noNulls remove { //garante ausência de elementos nulos
       case JArray(listOf) => listOf match {
         case Nil => true
@@ -516,7 +514,6 @@ Se a mutação de tabela falhar, entra a nossa maravilhosa "fallback_table". Nó
 ```scala
   def parseToFallback(inputRow: TableRow): TableRow = {
 
-    val formats = org.json4s.DefaultFormats
     inputRow.remove("ProcessingTime")
 
     val jsonStr = new Gson().toJson(inputRow)
