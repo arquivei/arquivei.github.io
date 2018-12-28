@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Processando eventos genéricos em streaming usando BigQuery e Dataflow
-date: 2018-12-07
+date: 2018-12-28
 categories: blog
 img: genericpipeline/main-picture.jpg
 tags: [Apache Beam, Spotify SCIO, Scala, Google Dataflow, BigData, Stream Processing, Mutating Events, Google PubSub, Google BigQuery, Apache Kafka]
