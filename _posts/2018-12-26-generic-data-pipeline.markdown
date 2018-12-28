@@ -510,8 +510,7 @@ Agora, forçamos o não paralelismo utilizando um recurso do Apache Beam que é 
 - Comparamos os dois Schemas e fazemos um merge dos dois, para respeitar o nosso JSON digievoluído e também suas versões mais antigas
 - Realizamos uma mutação do Schema da tabela de Destino
 
-A mutação da tabela de destino pode falhar. Isso indica que nossas condições não foram respeitadas, pois um campo teria seu tipo alterado por um update de Schema (o que o BigQuery não permite).
-
+A mutação da tabela de destino pode falhar. Isso indica que nossas condições não foram respeitadas, pois um campo teria seu tipo alterado por um update de Schema (o que o BigQuery não permite). Pode acontecer também de o limite de mutações de tabela ter sido atingido, porém no nosso caso esse limite ([1000 updates por dia](https://cloud.google.com/bigquery/quotas#table_limits)) não será atingido.
 Se a mutação de tabela falhar, entra a nossa maravilhosa "fallback_table". Nós pegamos o evento que falhou e colocamos ele em um envelope menos sexy, porém utilizável para os casos de falha:
 
 ```scala
