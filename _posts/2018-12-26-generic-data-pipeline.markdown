@@ -173,7 +173,7 @@ Atualmente, quando há uma alteração evolutiva ou eventos novos, não precisam
 O ganho de produtividade foi enorme e possibilitou ao time o foco em novos projetos que trazem mais valor do que as alterações quase que mecânicas que eram realizadas anteriormente.
 Com a versatilidade do auto scaling do Dataflow, não temos que nos preocupar com qualquer aumento abrupto ou permanente no volume de eventos. 
 
-Qualquer mudança no envelope de eventos ou no sistema de mensageria requer uma adaptação no código, que pode ser feita de maneira rápida. O código pode ser adaptado para qualquer stream de eventos que utilizamos por aqui, além de fornecer módulos que podem ser compartilhados entre outros projetos com outras finalidades.
+O pipeline ficou tão versátil que qualquer mudança no envelope de eventos ou no sistema de mensageria requer apenas uma pequena adaptação no código, que pode ser feita de maneira rápida. O código pode ser adaptado para qualquer stream de eventos que utilizamos por aqui, além de fornecer módulos que podem ser compartilhados entre outros projetos com outras finalidades.
 
 Abaixo vamos entrar em detalhes dos códigos e das implementações realizadas. Caso você tenha alguma dúvida ou quiser conversar conosco é só mandar um e-mail :) 
 
